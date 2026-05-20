@@ -1,0 +1,20 @@
+【 Counting 】 연도 카운팅 애니메이션
+1. [시각적 긴장감] 2020년 이전 구간은 10단위로 빠르게 훑고, 이후 1씩 올라오도록 onUpdate 콜백 안에서 분기 처리
+2. [순차 연출] Timeline으로 이미지 확장 → 연도 등장 → 카운팅 → 설명 텍스트를 하나의 흐름으로 제어
+
+【 Timeline 】 GSAP 인트로 순차 애니메이션
+1. [Hybrid Animation] Timeline의 onStart 콜백에서 .active 클래스를 추가해 GSAP 타이밍에 맞춰 CSS transition 트리거
+2. [연출 흐름 설계] 4단계 애니메이션을 단일 Timeline으로 묶어 "읽히는 순서"와 "보이는 순서"를 일치시킴
+
+【 Pin_nav 】 핀 네비게이션 연동
+1. [스크롤 동기화] ScrollTrigger.create()를 content_item마다 등록, onToggle로 현재 섹션에 맞게 핀 active 상태 자동 갱신
+2. [커스텀 스크롤] 핀 클릭 시 targetST.start 값을 역산해 gsap.to()로 ease 적용된 부드러운 이동 구현
+
+【 Product_slider 】 제품 슬라이더
+1. [커스텀 슬라이드] Slick 없이 GSAP x값 보간으로 슬라이드 이동 구현, 인덱스 순환 처리 포함
+2. [리스트 연동] 리스트 패널에서 항목 클릭 시 해당 인덱스로 직접 이동 후 패널 자동 닫힘
+
+【 Brand_line 】 브랜드 스크롤
+1. [무한 루프] 동일 요소 3벌 복제 후 scrollWidth / 3 만큼 이동, repeat: -1로 끊김 없는 자동 흐름 구현
+2. [ease: none] 일정한 속도 유지를 위해 ease 없이 linear 이동 적용
+

@@ -1,0 +1,178 @@
+Slick 반응형 배너
+최신음악 국내/해외 필터
+검색 풀다운 & 최근 검색어
+매거진 필터 정렬
+반응형 더보기 ↔ 페이지네이션
+
+
+Slick 반응형 배너
+메인 비주얼 배너를 Slick 라이브러리로 구현하였습니다.
+PC(1070px 이상)에서는 전체 너비 1장 슬라이드로,
+모바일/태블릿에서는 centerMode와 centerPadding으로
+좌우 슬라이드가 살짝 보이는 스와이프형으로 자동 전환됩니다.
+responsive 옵션의 breakpoint 분기를 활용해
+단일 초기화 코드로 두 가지 레이아웃을 동시에 처리하였습니다.
+
+코드
+
+$('.visual_box').slick({<br>
+  slidesToShow: 1,<br>
+  centerMode: false,<br>
+  centerPadding: '0',<br>
+  arrows: true,<br>
+  dots: true,<br>
+  infinite: true,<br>
+  autoplay: true,<br>
+  autoplaySpeed: 2000,<br>
+  pauseOnHover: true,<br><br>
+
+  responsive: [<br>
+    {<br>
+      breakpoint: 1070,<br>
+      settings: {<br>
+        centerMode: true,<br>
+        centerPadding: '16%',<br>
+        arrows: false<br>
+      }<br>
+    }<br>
+  ]<br>
+});
+
+
+최신음악 국내/해외 필터
+메인 페이지의 최신 음악 섹션에서 탭 클릭 시
+전체 / 국내 / 해외 카테고리로 목록을 필터링하도록 구현하였습니다.
+각 곡 항목에 data-category 속성을 부여하고,
+선택된 탭의 data-target 값과 비교하여 해당 항목만 노출하는 방식으로,
+HTML 구조 변경 없이 JS만으로 필터 전환이 가능하도록 설계하였습니다.
+
+
+코드
+
+$('.filter_item').click(function () {<br><br>
+
+  $('.filter_item').removeClass('on_newlist');<br>
+  $(this).addClass('on_newlist');<br><br>
+
+  let target = $(this).attr('data-target');<br><br>
+
+  if (target === 'all') {<br>
+    $('.new_list li').show();<br>
+  } else {<br>
+    $('.new_list li').hide();<br>
+    $('.new_list li[data-category="' + target + '"]').show();<br>
+  }<br>
+});
+
+검색 풀다운 & 최근 검색어
+PC에서 검색창 클릭 시 풀다운이 노출되고,
+검색 실행 시 최근 검색어 목록 상단에 동적으로 추가됩니다.
+최대 10개 초과 시 가장 오래된 항목을 자동 삭제하며,
+외부 영역 클릭 시 풀다운이 닫히도록 document 이벤트로 처리하였습니다.
+모바일에서는 검색 아이콘 클릭 시 별도 전체화면 검색 페이지로 전환됩니다.
+
+코드
+// 최근 검색어 추가
+function addRecentSearch() {<br>
+  const $input = isPC() ? $('.search_input_wrapper input') : $('#searchInput');<br>
+  const keyword = $input.val().trim();<br>
+  if (keyword === '') return;<br><br>
+
+  const now = new Date();<br>
+  const dateStr = `${now.getMonth() + 1}.${now.getDate()}.`;<br>
+  const newItem = `<li><br>
+    <span class="keyword">${keyword}</span><br>
+    <div class="info"><br>
+      <span class="date">${dateStr}</span><br>
+      <button class="btn_del">✕</button><br>
+    </div><br>
+  </li>`;<br><br>
+
+  $('.recent_list').prepend(newItem);<br>
+  $input.val('');<br><br>
+<br>
+  // 10개 초과 시 삭제<br>
+  $('.recent_list').each(function () {<br>
+    while ($(this).find('li').length > 10) {<br>
+      $(this).find('li').last().remove();<br>
+    }<br>
+  });<br>
+}<br><br>
+
+// 외부 클릭 시 풀다운 닫기<br>
+$(document).on('click', function (e) {<br>
+  if (!$(e.target).closest('.search_box').length) {<br>
+    $('.search_pulldown').removeClass('on');<br>
+  }<br>
+});
+
+매거진 필터 정렬
+매거진 목록 상단의 필터(날짜순 / 좋아요순 / 북마크순) 클릭 시
+allData 배열을 sort()로 재정렬한 뒤 renderList()를 다시 호출하도록 구현하였습니다.
+정렬 변경 시 표시 상태(displayedCount, currentPage)를 초기화하여
+항상 첫 화면부터 새로운 순서로 출력됩니다.
+
+코드
+
+filterItems.forEach(filter => {<br>
+  filter.addEventListener('click', (e) => {<br>
+    filterItems.forEach(li => li.classList.remove('on'));<br>
+    e.target.classList.add('on');<br><br>
+
+    const filterType = e.target.innerText;<br><br>
+
+    if (filterType === '좋아요 순') {<br>
+      allData.sort((a, b) => b.likes - a.likes);<br>
+    } else if (filterType === '북마크 순') {<br>
+      allData.sort((a, b) => b.bookmarks - a.bookmarks);<br>
+    } else {<br>
+      allData.sort((a, b) =><br>
+        new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-'))<br>
+      );<br>
+    }<br><br>
+
+    displayedCount = DEFAULT_COUNT;<br>
+    currentPage = 1;<br>
+    renderList();<br>
+  });<br>
+});
+
+반응형 더보기 ↔ 페이지네이션
+매거진 기사 목록을 화면 너비에 따라
+PC(1070px 이상)에서는 페이지네이션, 모바일/태블릿에서는 더보기 방식으로
+각각 다르게 렌더링하도록 구현하였습니다.
+renderList() 함수 내에서 window.innerWidth로 분기하며,
+resize 이벤트에 연결하여 창 크기가 바뀌어도 자동으로 전환됩니다.
+더보기 모드에서는 5개씩 추가 노출되고, 전체 노출 시 버튼이 "접기"로 전환됩니다.
+
+
+코드
+
+function renderList() {<br>
+  const isTabletOrMobile = window.innerWidth < 1070;<br><br>
+
+  if (isTabletOrMobile) {<br>
+    // 모바일/태블릿: 더보기 방식<br>
+    dataToRender = allData.slice(0, displayedCount);<br>
+    if (paginationContainer) paginationContainer.innerHTML = '';<br>
+  } else {<br>
+    // PC: 페이지네이션 방식<br>
+    const start = (currentPage - 1) * itemsPerPage;<br>
+    dataToRender = allData.slice(start, start + itemsPerPage);<br>
+    renderPagination();<br>
+  }<br><br>
+
+  moreBtn.innerText = displayedCount >= allData.length ? '접기' : '더보기';<br>
+}<br><br>
+
+moreBtn.addEventListener('click', () => {<br>
+  if (displayedCount >= allData.length) {<br>
+    displayedCount = DEFAULT_COUNT;<br>
+    window.scrollTo({ top: document.querySelector('.filter').offsetTop - 20, behavior: 'smooth' });<br>
+  } else {<br>
+    displayedCount += 5;<br>
+  }<br>
+  renderList();<br>
+});<br><br>
+
+window.addEventListener('resize', renderList);

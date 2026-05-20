@@ -1,0 +1,46 @@
+
+오노라 (Onora) · 코드 설명 후보 8개
+
+
+【 More_btn 】 더보기 / 접기
+
+1. [UX 이탈 방지] slice()로 초기 노출을 8개로 제한, 접기 시 fadeOut + scrollTo로 시선을 타이틀로 재고정
+2. [상태 분기] 버튼 텍스트를 상태값으로 활용해 더보기/접기 동작을 단일 핸들러로 처리
+
+
+【 Filter 】 카테고리 필터링
+1. [구조 분리] data-filter 값과 상품 클래스명을 일치시켜 JS 조건문 없이 .filter('.' + filterValue)만으로 카테고리 선별
+2. [Graceful Fallback] 상품 미존재 카테고리 클릭 시 빈 화면 대신 "준비 중" 메시지를 fadeIn으로 대체
+
+
+【 Phone_UX 】 전화번호 자동포커스 + 전체동의
+1. [자동 포커스] 4자리 입력 완료 시 다음 칸으로, 백스페이스 시 이전 칸으로 포커스 이동
+2. [양방향 동기화] 전체동의 ↔ 개별 체크박스가 서로 상태를 반영, every()로 전체 체크 여부 판별
+
+
+【 Category_tab 】 코디 추천 탭 전환 (CSS only)
+1. [JS 없는 탭 전환] input:checked + label 구조로 JS 없이 탭 클릭 → 콘텐츠 전환 구현
+2. [상태 연동] 형제 선택자(~)로 체크된 input에 따라 메인 이미지·설명·서브 상품까지 동시 전환
+
+
+【 Timer 】 타임세일 카운트다운
+1. [동적 기준값] 목표 시간을 고정값 아닌 현재 시간 기준 +8h로 설정해 페이지 진입 시마다 갱신
+2. [실시간 렌더링] setInterval로 1초마다 잔여 시간을 HH:MM:SS 포맷으로 업데이트, 종료 시 텍스트 전환
+
+
+【 Slick_slider 】 타임세일 슬라이더
+1. [외부 버튼 연동] 라이브러리 기본 화살표 대신 커스텀 버튼에 slickPrev/slickNext 직접 연결
+2. [자동재생 설정] autoplaySpeed·autoHover 옵션으로 hover 시 일시정지 구현
+
+
+【 Swiper_review 】 최신 후기 슬라이더
+1. [스크롤바 드래그] scrollbar draggable 옵션으로 마우스 드래그 네비게이션 추가
+2. [자동재생 유지] disableOnInteraction: false로 수동 조작 후에도 autoplay 지속
+
+
+【 Banner_CSS 】 메인 비주얼 배너 (CSS only)
+1. [JS 없는 슬라이드] radio input + label 구조로 JS 없이 배너 전환 구현
+2. [책갈피 인디케이터] clip-path로 책갈피 모양 인디케이터 제작, :checked 상태로 활성화 표시
+
+
+※ 최종 5개가 되도록 선별할 것

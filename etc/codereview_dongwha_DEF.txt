@@ -1,0 +1,134 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+동화약품 프로모션 홈페이지 · 코드 리뷰 추가분 (D, E, F)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 D 】 메인페이지 - 배너 슬라이드 + 커스텀 페이지네이션 연동
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인페이지 - 배너 슬라이드 커스텀 페이지네이션 연동
+
+1. 라이브러리 기본 UI를 걷어낸 커스텀 인디케이터 (Custom Pagination)
+Slick 라이브러리의 기본 dots UI를 사용하지 않고, 직접 만든 label 요소를
+페이지네이션으로 활용하였습니다. 클릭 시 slickGoTo()로 해당 슬라이드로
+이동하며, beforeChange 이벤트를 감지해 다음 슬라이드 인덱스에 맞춰
+활성 색상을 실시간으로 갱신합니다.
+라이브러리가 제공하는 기본 UI에 의존하지 않고 디자인 의도에 맞게
+인터랙션을 직접 제어한 사례입니다.
+
+2. 자동 슬라이드와 수동 조작의 상태 일치 (State Consistency)
+autoplay로 자동 전환되는 슬라이드와 사용자가 직접 클릭하는 수동 조작 모두에서
+페이지네이션 상태가 동일하게 유지됩니다.
+beforeChange 이벤트를 기준점으로 삼아 두 경우를 하나의 핸들러로 처리함으로써
+상태 불일치 없이 일관된 UI를 유지하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+$('.banner_pagination label').eq(0).css('background-color', '#EE1C25');
+
+$('.banner_pagination label').click(function () {
+  let idx = $(this).index();
+  $('.slide_wrapper').slick('slickGoTo', idx);
+});
+
+$('.slide_wrapper').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+  $('.banner_pagination label').css('background-color', '#D9D9D9');
+  $('.banner_pagination label').eq(nextSlide).css('background-color', '#EE1C25');
+});
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 E 】 공통 - 스크롤 감지 탑 버튼 노출/숨김
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+공통 - 스크롤 감지 탑 버튼 노출/숨김
+
+1. 배너 높이 기준의 동적 노출 조건 (Dynamic Threshold)
+탑 버튼의 노출 기준을 고정 픽셀값이 아닌 메인 배너의 실제 높이(offsetHeight)의
+50%로 설정하였습니다. 화면 크기가 달라져도 배너 비율에 맞게 기준이 자동으로
+조정되므로, 다양한 환경에서 일관된 UX를 제공합니다.
+
+2. GSAP overwrite 옵션으로 애니메이션 충돌 방지 (Animation Overwrite)
+스크롤 이벤트는 매우 빠르게 연속 발생하기 때문에 show/hide 애니메이션이
+중첩되어 충돌할 수 있습니다. overwrite: "auto" 옵션을 설정해 이전에 실행 중인
+같은 대상의 애니메이션을 자동으로 덮어쓰도록 처리하여
+버튼이 어중간한 opacity 상태에서 멈추는 문제를 방지하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const bannerHeight = document.querySelector('.main_banner').offsetHeight;
+
+  if (scrollTop > bannerHeight * 0.5) {
+    gsap.to(".top_btn", {
+      opacity: 1,
+      visibility: "visible",
+      duration: 0.3,
+      overwrite: "auto"
+    });
+  } else {
+    gsap.to(".top_btn", {
+      opacity: 0,
+      visibility: "hidden",
+      duration: 0.3,
+      overwrite: "auto"
+    });
+  }
+});
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 F 】 메인페이지 - GSAP Timeline 순차 인트로 애니메이션
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인페이지 - GSAP Timeline 순차 인트로 애니메이션
+
+1. Timeline으로 묶은 연출 흐름 설계 (Choreographed Motion)
+이미지 확장 → 연도 카운팅 → 설명 텍스트 등장 → 본문 텍스트 등장까지
+4단계 애니메이션을 각각 독립 실행하지 않고 하나의 GSAP Timeline(tl)으로
+묶어 순서를 명시적으로 제어하였습니다.
+타이밍을 코드로 직접 설계함으로써 "읽히는 순서"와 "보이는 순서"를 일치시켜
+정보 전달의 흐름을 연출하였습니다.
+
+2. CSS active 클래스와 GSAP의 혼합 제어 (Hybrid Animation)
+텍스트 하단의 포인트 라인은 GSAP이 아닌 CSS transition으로 구현되어 있습니다.
+Timeline의 onStart 콜백에서 .active 클래스를 추가하는 방식으로
+GSAP 타이밍에 맞춰 CSS 애니메이션을 트리거하였습니다.
+두 방식의 장점을 조합해 GSAP으로는 전체 흐름을, CSS로는 세부 효과를
+각각 담당하도록 역할을 분리하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#page01",
+    start: "top 20%",
+    toggleActions: "play none none none"
+  }
+});
+
+tl.to(".img_page01", { width: "80%", duration: 1, ease: "power3.inOut" })
+  .to(".company_years", { opacity: 1, duration: 0.5 })
+  .to(countObj, {
+    val: 2026,
+    duration: 1,
+    ease: "power2.out",
+    onUpdate: function () {
+      let current = Math.floor(countObj.val);
+      if (current < 2020) current = Math.floor(current / 10) * 10;
+      $(".company_years").text(current);
+    }
+  })
+  .to(".desc_txt", {
+    opacity: 1, y: -10, duration: 0.6,
+    onStart: function () { $(".desc_txt").addClass("active"); }
+  }, "-=0.3")
+  .to(".txt_page01", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.4");
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

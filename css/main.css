@@ -1,0 +1,1458 @@
+@charset "UTF-8";
+body {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+}
+
+.main_menu_outer {
+  width: 100%;
+  padding: 0.625rem;
+  border-top: 2px solid #323232;
+  border-bottom: 1px solid #323232;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.main_menu_outer.on_content {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.main_menu_inner {
+  border-top: 1px solid #323232;
+  border-bottom: 1px solid #323232;
+}
+
+.main_menu {
+  width: min(1070px, 90vw);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 1.125rem;
+  padding: 0.625rem 0;
+}
+.main_menu ul {
+  display: flex;
+  gap: 1.25rem;
+}
+.main_menu ul li:hover {
+  font-weight: bold;
+  color: #46A8E2;
+}
+
+.menu_logo {
+  width: 5rem;
+  height: 1.625rem;
+}
+
+.wrap .slide,
+.wrap02 .slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.wrap .slide01,
+.wrap .slide06,
+.wrap02 .slide01,
+.wrap02 .slide06 {
+  justify-content: flex-start !important;
+}
+
+.wrap {
+  width: min(1070px, 90vw);
+  margin: 0 auto;
+}
+.wrap .slide {
+  height: 100vh;
+  padding-top: 0;
+}
+.wrap .slide01 {
+  padding-top: 0;
+}
+.wrap .slide01 .slide01_inner {
+  height: 100%;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wrap .slide01 .rule_block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+.wrap .slide01 .rule_block .rule_line {
+  width: 100%;
+  height: 1.5px;
+  background-color: #323232;
+}
+.wrap .slide01 .slide01_body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.75rem 0 3.25rem;
+  gap: 3rem;
+}
+.wrap .slide01 .slide01_meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #879EBF;
+}
+.wrap .slide01 .slide01_main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 1.25rem;
+}
+.wrap .slide01 .slide01_bg_txt {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: none;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 6.625rem;
+  color: rgba(0, 78, 151, 0.1);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  text-align: right;
+}
+.wrap .slide01 .slide01_headline {
+  position: relative;
+  z-index: 1;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: #323232;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  max-width: 60%;
+}
+.wrap .slide01 .slide01_sub {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  text-align: right;
+}
+.wrap .slide01 .slide01_rule {
+  width: 1px;
+  height: 3.75rem;
+  background: linear-gradient(to bottom, transparent, #879EBF, transparent);
+  flex-shrink: 0;
+}
+.wrap .slide01 .slide01_sub_txt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+.wrap .slide01 .slide01_name {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.625rem;
+  color: #323232;
+  letter-spacing: 0.05em;
+}
+.wrap .slide01 .slide01_desc {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.875rem;
+  color: #888;
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+}
+.wrap .slide01 .slide01_desc strong {
+  color: #323232;
+  font-weight: 600;
+}
+.wrap .slide02 {
+  position: relative;
+}
+.wrap .slide02 .slide_title {
+  margin-bottom: 1.25rem;
+}
+.wrap .slide02 .slide02_between {
+  display: flex;
+  gap: 3.125rem;
+  justify-content: space-between;
+  position: relative;
+}
+.wrap .slide02 .left_slide02 {
+  flex-grow: 1;
+  position: relative;
+}
+.wrap .slide02 .profile_photo {
+  width: 20rem;
+  padding: 0.75rem;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 3.75rem;
+  transition: transform 0.6s ease-in-out;
+}
+.wrap .slide02 .profile_photo:hover {
+  rotate: 3deg;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.wrap .slide02 .photo_space {
+  width: 100%;
+  height: 23.75rem;
+}
+.wrap .slide02 .photo_caption {
+  margin-top: 0.75rem;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 2;
+  color: #666;
+}
+.wrap .slide02 .photo_caption p {
+  margin-bottom: 0.125rem;
+}
+.wrap .slide02 .right_slide02 {
+  margin-right: 3.75rem;
+  flex-grow: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wrap .slide02 .title_ment {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #323232;
+  padding-bottom: 0.875rem;
+  margin-bottom: 0rem;
+  color: #444;
+  line-height: 1.7;
+}
+.wrap .slide02 .profile_info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+}
+.wrap .slide02 .mini_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #46A8E2;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid rgba(70, 168, 226, 0.2);
+}
+.wrap .slide02 .mini_txt {
+  margin-bottom: 0rem;
+}
+.wrap .slide02 .edu_row {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 0.75rem;
+  align-items: baseline;
+}
+.wrap .slide02 .edu_date {
+  font-size: 0.875rem;
+  color: #879EBF;
+  flex-shrink: 0;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  letter-spacing: 0.02em;
+  width: 8.75rem;
+  line-height: 1.8;
+}
+.wrap .slide02 .edu_desc {
+  font-size: 1rem;
+  color: #323232;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  line-height: 1.8;
+}
+.wrap .slide03 {
+  height: auto;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.wrap .slide03 .skill_wrap {
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.wrap .slide03 .skill_wrap .skill {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  padding-bottom: 2.25rem;
+}
+.wrap .slide03 .skill_wrap .skill_info {
+  line-height: 1.875rem;
+}
+.wrap .slide03 .skill_wrap .mini_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #46A8E2;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 2px solid rgba(70, 168, 226, 0.1);
+}
+.wrap .slide03 .skill_wrap .skill_txt p {
+  margin-bottom: 0.75rem;
+}
+.wrap .slide03 .skill_wrap .skill_txt p:last-child {
+  margin-bottom: 0;
+}
+.wrap .slide03 .skill_wrap .skill_row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  align-items: baseline;
+}
+.wrap .slide03 .skill_wrap .skill_row:last-child {
+  margin-bottom: 0;
+}
+.wrap .slide03 .skill_wrap .skill_name {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #879EBF;
+  flex-shrink: 0;
+  width: 4.75rem;
+  letter-spacing: 0.02em;
+}
+.wrap .slide03 .skill_wrap .skill_desc {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.875rem;
+  color: #323232;
+  line-height: 1.7;
+}
+.wrap .slide03 .skill_wrap .skill_txt .skill_row:hover .skill_name {
+  color: #46A8E2;
+}
+.wrap .slide03 .skill_wrap .skill_txt .skill_row:hover .skill_desc {
+  color: #46A8E2;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #46A8E2;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.5rem;
+}
+.wrap .slide03 .skill_wrap .skill_img {
+  position: relative;
+  width: 85%;
+  height: 10rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  border-radius: 1.25rem;
+}
+.wrap .slide03 .skill_wrap .skill_img01 {
+  background-image: url(../images/skill01.png);
+}
+.wrap .slide03 .skill_wrap .skill_img02 {
+  background-image: url(../images/skill02.png);
+}
+.wrap .slide03 .skill_wrap .skill_img03 {
+  background-image: url(../images/skill03.png);
+}
+.wrap .slide03 .skill_wrap .Main_skill {
+  border-bottom: 1px dotted #B6C0C9;
+}
+.wrap .slide03 .skill_wrap .Main_skill .skill_img {
+  margin-left: auto;
+}
+.wrap .slide03 .skill_wrap .skill_icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background-color: #fff;
+  aspect-ratio: 1/1;
+  margin: 0.625rem;
+  margin-right: 0.25rem;
+  padding: 0.625rem;
+}
+.wrap .slide03 .skill_wrap .Design_skill {
+  border-bottom: 1px dotted #B6C0C9;
+}
+.wrap .slide03 .skill_wrap .Design_skill .skill_img {
+  align-items: end;
+  justify-content: right;
+}
+.wrap .slide03 .skill_wrap .Design_skill .skill_img > div {
+  margin-left: 0.25rem;
+  margin-right: 0.625rem;
+}
+.wrap .slide03 .skill_wrap .Library_sill .skill_img {
+  align-items: end;
+  margin-left: auto;
+}
+.wrap .slide04 .project_wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+}
+.wrap .slide04 .project {
+  margin-top: 2.5rem;
+  color: rgba(50, 50, 50, 0.8);
+  padding: 2.5rem 1rem;
+  border: 3px solid transparent;
+  transition: all 0.3s;
+}
+.wrap .slide04 .project:hover {
+  border-radius: 1.25rem;
+  color: #000;
+  border: 2px outset #C0D6E4;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+.wrap .slide04 .project {
+  cursor: pointer;
+}
+.wrap .slide04 .project_subtitle {
+  font-size: 0.9375rem;
+  color: #323232;
+  line-height: 1.7;
+}
+.wrap .slide04 .site_title {
+  margin-top: 1.125rem;
+  width: 100%;
+  text-align: center;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.625rem;
+  font-weight: 500;
+}
+.wrap .slide04 .Mockup_img {
+  padding: 1rem;
+  position: relative;
+}
+.wrap .slide04 .Mockup_img .thumb_arrow {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fff;
+  border: 1px solid #D9D9D9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translate(4px, -4px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.wrap .slide04 .Mockup_img .thumb_arrow::after {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23323232' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 17L17 7M7 7h10v10'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.wrap .slide04 .project:hover .thumb_arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.wrap .slide04 .site_hash {
+  font-size: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0.75rem 0;
+  margin-bottom: 1rem;
+}
+.wrap .slide04 .site_hash li {
+  border-radius: 1.25rem;
+  padding: 0.375rem 0.75rem;
+  text-align: center;
+  margin-bottom: 0.625rem;
+  background-color: #fff;
+  border: 1px solid #46A8E2;
+  color: rgba(70, 168, 226, 0.8);
+}
+.wrap .slide04 .site_hash li:hover {
+  color: #fff;
+  border: none;
+  background-color: #46A8E2;
+}
+.wrap .slide04 .project_copyright {
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid #46A8E2;
+}
+.wrap .slide04 .project_copyright p {
+  font-size: 0.75rem;
+  color: rgba(50, 50, 50, 0.55);
+  line-height: 1.6;
+}
+
+.project_news {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow-y: auto;
+  background-color: #F2F2F2;
+}
+.project_news .project_nav_btns {
+  position: sticky;
+  top: 50vh;
+  transform: translateY(-50%);
+  height: 3.25rem;
+  margin-bottom: calc(-3.25rem);
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  padding: 0 1.25rem;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.project_news .project_nav_btns button {
+  pointer-events: all;
+  background: #fff;
+  border: 1px solid #323232;
+  padding: 0.625rem 1.25rem;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.project_news .project_nav_btns button:hover {
+  background: #323232;
+  color: #fff;
+}
+.project_news .project_rail {
+  display: flex;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.project_news .site_detail {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 200vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: 4.75rem;
+}
+.project_news .site_detail .inner {
+  width: min(1070px, 90vw);
+  margin: 0 auto;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.project_news .project_index {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #323232;
+  border-bottom: 2px solid #323232;
+  flex-shrink: 0;
+  font-family: "Pretendard Variable", sans-serif;
+  padding: 0 1.25rem;
+}
+.project_news .project_index div {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+}
+.project_news .project_index div:nth-child(2) {
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+.project_news .project_index .panel_close {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #323232;
+  border-radius: 0.625rem;
+  color: #323232;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+}
+.project_news .project_index .panel_close:hover {
+  background: #323232;
+  color: #fff;
+}
+.project_news .wrap_project {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.project_news .project_up {
+  width: 100%;
+  min-height: calc(100vh - 4.75rem - 3.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px dotted #323232;
+  box-sizing: border-box;
+}
+.project_news .project_down {
+  width: 100%;
+  padding-top: calc(4.75rem + 5rem);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 5rem 0;
+  box-sizing: border-box;
+  border-bottom: 1px dotted #323232;
+  align-items: center;
+}
+.project_news .project_down .tab_con {
+  display: none;
+}
+.project_news .project_down .tab_con.active {
+  display: block;
+}
+.project_news .project_down .pr_img {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+.project_news .project_down .pr_img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.project_news .project_up_set01 {
+  display: flex;
+  gap: 3.75rem;
+  align-items: flex-start;
+}
+.project_news .project_up_set02 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 3.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.project_news .project_img {
+  width: 35rem;
+  flex-shrink: 0;
+}
+.project_news .project_img img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.project_news .project_shortcut {
+  flex: 1;
+}
+.project_news .project_shortcut .shortcut_title {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #323232;
+}
+.project_news .project_shortcut .shortcut_title .catchpress {
+  font-size: 1rem;
+  color: #46A8E2;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.project_news .project_shortcut .shortcut_title .eng_title {
+  position: absolute;
+  top: 2.25rem;
+  left: -0.625rem;
+  font-size: 3.75rem;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.05);
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+.project_news .project_shortcut .shortcut_title .project_name {
+  font-size: 3rem;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-weight: 700;
+}
+.project_news .project_shortcut .shortcut_list li {
+  line-height: 2.125rem;
+  font-size: 1.125rem;
+  border-bottom: 1px solid #D9D9D9;
+  padding: 0.3125rem 0 0.3125rem 0.625rem;
+  transition: 0.3s;
+}
+.project_news .project_shortcut .shortcut_list li:hover {
+  padding-left: 1.25rem;
+  background: rgba(135, 158, 191, 0.1);
+}
+.project_news .code_review_btn {
+  display: block;
+  margin-top: auto;
+  padding: 0.625rem 1rem;
+  border: 1px solid #46A8E2;
+  color: #46A8E2;
+  font-size: 0.8125rem;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 0.08em;
+}
+.project_news .code_review_btn:hover {
+  background: #46A8E2;
+  color: #fff;
+}
+.project_news .project_up_tag {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.project_news .project_up_tag > div {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.project_news .project_up_tag > div p:first-child {
+  border-radius: 1.25rem;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  background: #fff;
+  border: 1px solid #879EBF;
+  padding: 0.25rem 0.75rem;
+  color: #46A8E2;
+}
+.project_news .project_up_tag .worker {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9375rem;
+  width: 100%;
+}
+.project_news .project_up_tag .worker p:first-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.project_news .project_up_tag .worker ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.625rem;
+  flex: 1;
+}
+.project_news .project_up_tag .worker ul li:nth-child(1),
+.project_news .project_up_tag .worker ul li:nth-child(2) {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.project_news .project_up_tag .worker ul li:last-child {
+  white-space: normal;
+  flex: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+.project_news .skill_library {
+  margin-top: 1.875rem;
+}
+.project_news .skill_library p {
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+}
+.project_news .skill_library ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9375rem;
+}
+.project_news .skill_library ul li {
+  font-size: 1rem;
+  color: #323232;
+}
+.project_news .skill_library ul li::before {
+  content: "•";
+  color: #879EBF;
+  margin-right: 0.3125rem;
+}
+.project_news .project_detail {
+  width: 45%;
+  align-items: flex-start !important;
+}
+.project_news .project_detail .detail_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.875rem;
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+}
+.project_news .project_detail .detail_subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  background: #d9d9d9;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+.project_news .project_detail .pr div {
+  margin-bottom: 1.25rem;
+}
+.project_news .project_detail .pr div p:first-child {
+  font-weight: bold;
+  margin-bottom: 0.3125rem;
+}
+.project_news .project_detail .pr div p:last-child {
+  line-height: 1.8;
+  color: #666;
+}
+.project_news .project_code {
+  width: 50%;
+}
+.project_news .project_code .code_index_wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.project_news .project_code .idx_prev,
+.project_news .project_code .idx_next {
+  background: #eee;
+  border: none;
+  width: 24px;
+  height: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  color: #879EBF;
+  flex-shrink: 0;
+}
+.project_news .project_code .idx_prev:hover,
+.project_news .project_code .idx_next:hover {
+  background: #879EBF;
+  color: #fff;
+}
+.project_news .project_code .code_index {
+  display: flex;
+  gap: 0.625rem;
+  overflow-x: auto;
+}
+.project_news .project_code .code_index li {
+  padding: 0.5rem 1.25rem;
+  background: #eee;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.project_news .project_code .code_index li.active {
+  background: #879EBF;
+  color: #fff;
+}
+.project_news .project_code .code_index::-webkit-scrollbar {
+  height: 3px;
+}
+.project_news .project_code .code_index::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project_news .project_code .code_index::-webkit-scrollbar-thumb {
+  background: #879EBF;
+  border-radius: 10px;
+}
+.project_news .project_code .code_canvas {
+  height: 37.5rem;
+  background: #fff;
+  border: none;
+  padding: 1.25rem;
+  overflow-y: auto;
+  color: #323232;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+}
+.project_news .project_code .code_canvas ul li {
+  display: none;
+}
+.project_news .project_code .code_canvas ul li.active {
+  display: block;
+}
+
+.scroll_hint {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc((100vw - min(1070px, 90vw)) / 4);
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #46A8E2;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  pointer-events: none;
+  animation: bounce 1.6s ease-in-out infinite;
+  text-align: center;
+}
+.scroll_hint.is-open {
+  display: flex;
+}
+.scroll_hint p {
+  margin: 0;
+}
+.scroll_hint .material-symbols-rounded {
+  font-size: 3.75rem;
+  display: block;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+.slide_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 5.5rem;
+  color: rgba(0, 78, 151, 0.1);
+}
+
+.wrap02 {
+  width: min(1070px, 90vw);
+  margin: 0 auto;
+}
+.wrap02 .slide_title {
+  margin-bottom: 2.5rem;
+}
+.wrap02 .slide {
+  height: 100vh;
+  padding-top: 0;
+  position: relative;
+}
+.wrap02 .slide05 {
+  padding-bottom: 5rem;
+  overflow: hidden;
+}
+.wrap02 .slide05 .gallery_header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  gap: 0;
+}
+.wrap02 .slide05 .gallery_header_left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.wrap02 .slide05 .gallery_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 5.5rem;
+  color: rgba(0, 78, 151, 0.1);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-top: 1.25rem;
+}
+.wrap02 .slide05 .gallery_title em {
+  font-style: italic;
+  color: #879EBF;
+}
+.wrap02 .slide05 .gallery_subtitle {
+  font-size: 0.8125rem;
+  color: #888;
+  margin-top: 0.625rem;
+  line-height: 1.7;
+}
+.wrap02 .slide05 .gallery_rule {
+  width: 1px;
+  height: 3.75rem;
+  background: linear-gradient(to bottom, transparent, #879EBF, transparent);
+  margin: 0 1.5rem;
+}
+.wrap02 .slide05 .gallery_count_block {
+  text-align: right;
+  color: #888;
+}
+.wrap02 .slide05 .gallery_count_num {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 2.625rem;
+  font-weight: 700;
+  color: #323232;
+  line-height: 1;
+}
+.wrap02 .slide05 .gallery_count_label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+.wrap02 .slide05 .gallery_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.wrap02 .slide05 .gallery_container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(135, 158, 191, 0.2);
+  transform: translateX(-50%);
+}
+.wrap02 .slide05 .gallery_item {
+  cursor: pointer;
+  padding: 2rem 2.5rem;
+  position: relative;
+  transition: background 0.3s;
+}
+.wrap02 .slide05 .gallery_item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2.5rem;
+  right: 2.5rem;
+  height: 1px;
+  background: rgba(135, 158, 191, 0.2);
+}
+.wrap02 .slide05 .gallery_item:hover {
+  background: rgba(135, 158, 191, 0.05);
+}
+.wrap02 .slide05 .gallery_item:hover .thumb_box img {
+  transform: scale(1.04);
+  filter: grayscale(0%);
+}
+.wrap02 .slide05 .gallery_item:hover .thumb_arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.wrap02 .slide05 .gallery_item:hover .thumb_arrow::after {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23323232' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 17L17 7M7 7h10v10'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.wrap02 .slide05 .gallery_item:hover .gallery_cta span {
+  width: 2.25rem;
+}
+.wrap02 .slide05 .gallery_index {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 0.6875rem;
+  color: #879EBF;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.wrap02 .slide05 .gallery_index::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #879EBF;
+  opacity: 0.3;
+  max-width: 2.5rem;
+}
+.wrap02 .slide05 .thumb_box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/7;
+  overflow: hidden;
+  background: #D9D9D9;
+  margin-bottom: 1.25rem;
+  border-radius: 0.75rem;
+}
+.wrap02 .slide05 .thumb_box img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: grayscale(20%);
+}
+.wrap02 .slide05 .thumb_tag {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: #323232;
+  color: #fff;
+  font-size: 0.625rem;
+  border-radius: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.3125rem 0.625rem;
+  font-weight: 500;
+}
+.wrap02 .slide05 .thumb_arrow {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fff;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translate(4px, -4px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.wrap02 .slide05 .thumb_arrow svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: #323232;
+}
+.wrap02 .slide05 .gallery_card_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #323232;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.wrap02 .slide05 .gallery_card_desc {
+  font-size: 0.75rem;
+  color: #888;
+  line-height: 1.7;
+}
+.wrap02 .slide05 .gallery_card_footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrap02 .slide05 .gallery_meta {
+  font-size: 0.6875rem;
+  color: #999;
+  letter-spacing: 0.08em;
+}
+.wrap02 .slide05 .gallery_cta {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #46A8E2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.wrap02 .slide05 .gallery_cta span {
+  width: 1.25rem;
+  height: 1px;
+  background: #46A8E2;
+  display: inline-block;
+  transition: width 0.3s;
+}
+.wrap02 .gallery_modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+.wrap02 .gallery_modal.active {
+  display: block;
+}
+.wrap02 .modal_backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+.wrap02 .modal_panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(740px, 90vw);
+  max-height: 85vh;
+  transform: translate(-50%, -50%);
+  background: #fafaf8;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.wrap02 .modal_head {
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid rgba(135, 158, 191, 0.2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: #fafaf8;
+  z-index: 10;
+}
+.wrap02 .modal_category {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #46A8E2;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.wrap02 .modal_title {
+  font-family: "KoPub World Batang", "KoPubWorldBatang", serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #323232;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.wrap02 .modal_title em {
+  font-style: italic;
+  color: #879EBF;
+}
+.wrap02 .modal_close {
+  background: none;
+  border: 1px solid rgba(135, 158, 191, 0.3);
+  border-radius: 0.625rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.wrap02 .modal_close:hover {
+  background: #46A8E2;
+  color: #fff;
+  border-color: #46A8E2;
+}
+.wrap02 .modal_body {
+  padding: 2.5rem 3rem 3.75rem;
+  flex: 1;
+}
+.wrap02 .masonry_grid {
+  -moz-columns: 2;
+       columns: 2;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+.wrap02 .masonry_item {
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: #eee;
+  position: relative;
+  cursor: zoom-in;
+}
+.wrap02 .masonry_item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.wrap02 .masonry_item:hover img {
+  transform: scale(1.03);
+}
+.wrap02 .masonry_item.full {
+  -moz-column-span: all;
+       column-span: all;
+}
+.wrap02 .masonry_item.full img {
+  width: 100%;
+  height: auto;
+}
+.wrap02 .masonry_caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(20, 20, 20, 0.7));
+  color: #fff;
+  font-size: 0.6875rem;
+  padding: 1.25rem 0.875rem 0.625rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  letter-spacing: 0.05em;
+}
+.wrap02 .masonry_item:hover .masonry_caption {
+  opacity: 1;
+}
+.wrap02 .masonry_label {
+  -moz-column-span: all;
+       column-span: all;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #888;
+  padding: 0.5rem 0 0.875rem;
+  border-bottom: 1px solid rgba(135, 158, 191, 0.2);
+  margin-bottom: 1rem;
+}
+.wrap02 .modal_scroll_hint {
+  text-align: center;
+  font-size: 0.625rem;
+  color: #bbb;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0 0 2rem;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, calc(-50% + 40px));
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+.wrap02 .slide06 {
+  padding-top: 0;
+}
+.wrap02 .slide06 .slide06_inner {
+  height: 100%;
+  padding-top: 4.75rem;
+  padding-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wrap02 .slide06 .rule_block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+.wrap02 .slide06 .rule_block .rule_line {
+  width: 100%;
+  height: 1.5px;
+  background-color: #323232;
+}
+.wrap02 .slide06 .closing_body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3.75rem;
+  flex: 1;
+  padding: 3.75rem 0 3rem;
+}
+.wrap02 .slide06 .closing_left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.wrap02 .slide06 .closing_issue {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #879EBF;
+}
+.wrap02 .slide06 .slide_title {
+  color: #323232;
+  font-size: 4.5rem;
+  line-height: 1.05;
+  margin-bottom: 0;
+}
+.wrap02 .slide06 .closing_sub {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.8125rem;
+  color: #323232;
+  letter-spacing: 0.05em;
+}
+.wrap02 .slide06 .closing_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2.25rem;
+  flex-shrink: 0;
+  width: 22.5rem;
+}
+.wrap02 .slide06 .contact_block {
+  width: 100%;
+  border-top: 1px solid #323232;
+  padding-top: 0.875rem;
+}
+.wrap02 .slide06 .contact_label {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #879EBF;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.wrap02 .slide06 .contact_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.wrap02 .slide06 .contact_list li {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: #323232;
+}
+.wrap02 .slide06 .contact_list .contact_key {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+  font-weight: 500;
+  width: 3rem;
+  flex-shrink: 0;
+  color: #879EBF;
+}
+.wrap02 .slide06 .contact_list .contact_val {
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+}
+.wrap02 .slide06 .closing_img_wrap {
+  width: 100%;
+  position: relative;
+}
+.wrap02 .slide06 .closing_img_wrap img {
+  width: 100%;
+  height: 12.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  filter: grayscale(15%);
+}
+.wrap02 .slide06 .closing_img_wrap .img_caption {
+  font-size: 0.625rem;
+  color: #999;
+  letter-spacing: 0.12em;
+  text-align: right;
+  margin-top: 0.375rem;
+}
+.wrap02 .slide06 .closing_footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.wrap02 .slide06 .closing_footer_text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: #999;
+  letter-spacing: 0.1em;
+  font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
+}/*# sourceMappingURL=main.css.map */

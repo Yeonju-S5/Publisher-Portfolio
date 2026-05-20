@@ -1,0 +1,171 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+동화약품 프로모션 홈페이지 · 코드 리뷰 초안
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+▶ 후보 목록 (6개 중 2개 고르면 됨)
+──────────────────────────────────────
+A. 숫자 카운팅 애니메이션 (countObj)
+B. ScrollTrigger + 핀 네비게이션 연동
+C. 커스텀 슬라이더 직접 구현 (product slider)
+D. 배너 슬라이드 + 커스텀 페이지네이션 연동
+E. Top 버튼 스크롤 감지 노출/숨김
+F. GSAP Timeline 순차 애니메이션 (page01)
+──────────────────────────────────────
+추천 조합: A + B  (설명하기 쉽고 임팩트 있음)
+또는:      A + C  (라이브러리 안 쓴 게 차별점)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 A 】 메인페이지 - 설립연도 카운팅 애니메이션
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인페이지 - 설립연도 카운팅 애니메이션
+
+1. 역사성 강조를 위한 숫자 연출 (Visual Storytelling)
+1897년에서 2026년까지 숫자가 올라가는 카운팅 애니메이션을 구현하였습니다.
+단순히 숫자만 바꾸는 것이 아니라, 2020년 이전 구간은 10단위로 빠르게 훑고
+이후 구간에서 1씩 정밀하게 올라오도록 onUpdate 콜백 안에서 분기 처리하였습니다.
+"오래된 역사"를 시각적으로 체감하게 하면서도 현재 연도에 다가올수록
+긴장감이 높아지는 UX를 의도하였습니다.
+
+2. GSAP Timeline과의 연계 (Sequenced Motion)
+카운팅 애니메이션은 독립적으로 실행되는 것이 아니라 GSAP Timeline(tl) 안에서
+이미지 확장 → 연도 등장 → 카운팅 → 설명 텍스트 순으로 순차 실행됩니다.
+"-=0.3" 오프셋을 활용해 각 요소가 자연스럽게 겹치며 등장하도록 하여
+페이지 진입 시 하나의 흐름처럼 느껴지는 인트로 연출을 구현하였습니다.
+
+──────────────────────────────────────
+코드 (HTML 탭에 넣을 것)
+──────────────────────────────────────
+let countObj = { val: 1897 };
+
+tl.to(".company_years", { opacity: 1, duration: 0.5 })
+
+  .to(countObj, {
+    val: 2026,
+    duration: 1,
+    ease: "power2.out",
+    onUpdate: function () {
+      let current = Math.floor(countObj.val);
+      if (current < 2020) current = Math.floor(current / 10) * 10;
+      $(".company_years").text(current);
+    }
+  })
+
+  .to(".desc_txt", {
+    opacity: 1,
+    y: -10,
+    duration: 0.6,
+  }, "-=0.3")
+
+  .to(".txt_page01", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power2.out"
+  }, "-=0.4");
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 B 】 메인페이지 - 스크롤 위치 기반 핀 네비게이션 연동
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인페이지 - 스크롤 위치 기반 핀 네비게이션 연동
+
+1. 스크롤 흐름과 UI 상태의 동기화 (Scroll-State Sync)
+페이지를 스크롤할 때 현재 뷰포트에 들어온 콘텐츠 섹션에 맞춰
+왼쪽 핀 네비게이션의 active 상태가 자동으로 바뀌도록 구현하였습니다.
+ScrollTrigger.create()를 각 .content_item마다 등록하고,
+onToggle 콜백에서 isActive 여부를 판단해 해당 인덱스의 핀 아이템만
+active 클래스를 부여하는 방식입니다.
+사용자가 별도로 클릭하지 않아도 현재 위치를 직관적으로 파악할 수 있어
+긴 스크롤 페이지에서의 길 찾기 UX를 개선하였습니다.
+
+2. 핀 클릭 시 해당 섹션으로 부드러운 이동 (Click-to-Scroll)
+핀 아이템을 클릭하면 ScrollTrigger에 등록된 트리거 정보에서
+해당 섹션의 시작 위치를 역산하여 GSAP으로 부드럽게 스크롤 이동합니다.
+window.scrollTo를 직접 쓰지 않고 scrollObj를 만들어
+gsap.to()로 y값을 보간함으로써 ease 적용이 가능한 커스텀 스크롤을 구현하였습니다.
+
+──────────────────────────────────────
+코드 (HTML 탭에 넣을 것)
+──────────────────────────────────────
+gsap.utils.toArray(".content_item").forEach((item, i) => {
+  ScrollTrigger.create({
+    trigger: item,
+    start: "top center",
+    end: "bottom center",
+    onToggle: self => {
+      if (self.isActive) {
+        $(".pin_item").removeClass("active");
+        $(".pin_item").eq(i).addClass("active");
+      }
+    }
+  });
+});
+
+// 핀 클릭 → 해당 섹션 이동
+pinItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    const targetST = ScrollTrigger.getAll().find(
+      st => st.trigger && st.trigger.id === `content0${index + 1}`
+    );
+    if (targetST) {
+      let scrollObj = { y: window.scrollY };
+      gsap.to(scrollObj, {
+        y: targetST.start + 280,
+        duration: 1.2,
+        ease: "power2.inOut",
+        onUpdate: () => window.scrollTo(0, scrollObj.y)
+      });
+    }
+  });
+});
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+【 C 】 메인페이지 - 커스텀 상품 슬라이더 직접 구현
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인페이지 - 커스텀 상품 슬라이더 직접 구현
+
+1. 라이브러리 없이 직접 계산한 슬라이드 이동 (Vanilla Slider)
+Swiper나 Slick 같은 슬라이더 라이브러리를 사용하지 않고,
+offsetWidth와 gap 값을 직접 계산하여 슬라이드 이동 거리를 산출하였습니다.
+현재 인덱스에 (슬라이드 너비 + gap)을 곱한 값만큼 wrapper를 GSAP으로
+translateX 이동시키는 방식으로, 구조를 완전히 이해하고 직접 제어할 수 있습니다.
+
+2. 리스트 패널 연동으로 빠른 슬라이드 접근 (Direct Navigation)
+이전/다음 버튼 외에 전체 상품 목록 패널을 별도로 두어,
+원하는 상품을 클릭하면 data-target 속성값을 인덱스로 읽어
+해당 슬라이드로 즉시 이동하는 직접 접근 기능을 구현하였습니다.
+이동 후 목록 패널은 자동으로 닫혀 사용자의 불필요한 인터랙션을 줄였습니다.
+
+──────────────────────────────────────
+코드 (HTML 탭에 넣을 것)
+──────────────────────────────────────
+function move() {
+  const slideWidth = products[0].offsetWidth;
+  const gap = 40;
+  const moveDistance = (slideWidth + gap) * currentIndex;
+
+  gsap.to(sliderWrapper, {
+    x: -moveDistance,
+    duration: 0.6,
+    ease: "power2.out"
+  });
+}
+
+// 리스트에서 직접 이동
+listItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    currentIndex = Number(item.getAttribute('data-target'));
+    move();
+    productList.classList.remove('on');
+  });
+});
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

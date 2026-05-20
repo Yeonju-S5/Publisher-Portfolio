@@ -1,0 +1,393 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+멜론 리디자인 · 코드 리뷰
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+홈페이지 사용코드
+메인 - 최신음악 필터 / Slick 반응형 배너 / MV 재생 / 차트 hover / 검색 풀다운 / 플레이어 상태 동기화 / 화면 전환
+서브(매거진) - JSON 렌더링 / 반응형 더보기↔페이지네이션 / 필터 정렬
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 최신음악 국내/해외 필터
+메인 페이지의 최신 음악 섹션에서 탭 클릭 시
+전체 / 국내 / 해외 카테고리로 목록을 필터링하도록 구현하였습니다.
+각 곡 항목에 data-category 속성을 부여하고,
+선택된 탭의 data-target 값과 비교하여 해당 항목만 노출하는 방식으로,
+HTML 구조 변경 없이 JS만으로 필터 전환이 가능하도록 설계하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+$('.filter_item').click(function () {
+
+  $('.filter_item').removeClass('on_newlist');
+  $(this).addClass('on_newlist');
+
+  let target = $(this).attr('data-target');
+
+  if (target === 'all') {
+    $('.new_list li').show();
+  } else {
+    $('.new_list li').hide();
+    $('.new_list li[data-category="' + target + '"]').show();
+  }
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. Slick 반응형 배너
+메인 비주얼 배너를 Slick 라이브러리로 구현하였습니다.
+PC(1070px 이상)에서는 전체 너비 1장 슬라이드로,
+모바일/태블릿에서는 centerMode와 centerPadding으로
+좌우 슬라이드가 살짝 보이는 스와이프형으로 자동 전환됩니다.
+responsive 옵션의 breakpoint 분기를 활용해
+단일 초기화 코드로 두 가지 레이아웃을 동시에 처리하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+$('.visual_box').slick({
+  slidesToShow: 1,
+  centerMode: false,
+  centerPadding: '0',
+  arrows: true,
+  dots: true,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: true,
+
+  responsive: [
+    {
+      breakpoint: 1070,
+      settings: {
+        centerMode: true,
+        centerPadding: '16%',
+        arrows: false
+      }
+    }
+  ]
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. MV 재생 (썸네일 → iframe autoplay)
+인기 뮤직비디오 섹션에서 썸네일 이미지(mask)를 클릭하면
+iframe의 src에 autoplay=1&mute=1 파라미터를 동적으로 추가하여
+영상이 즉시 재생되도록 구현하였습니다.
+mask를 숨기고 iframe을 노출하는 방식으로,
+페이지 로드 시 불필요한 영상 자동재생을 방지하면서도
+클릭 즉시 자연스러운 재생 전환이 가능합니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+const masks = document.querySelectorAll('.mask');
+
+masks.forEach((mask) => {
+  mask.addEventListener('click', function () {
+    this.classList.add('hide');
+
+    const iframe = this.nextElementSibling;
+    const src = iframe.getAttribute('src');
+
+    const connector = src.includes('?') ? '&' : '?';
+    iframe.setAttribute('src', src + connector + 'autoplay=1&mute=1');
+  });
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. 실시간 차트 hover 확장
+PC 환경에서 차트 항목에 마우스를 올리면
+해당 항목의 height가 늘어나며 앨범 썸네일이 나타나도록 구현하였습니다.
+mouseenter 이벤트로 기존 active 클래스를 제거하고
+현재 항목에 active를 부여하는 방식으로,
+CSS transition과 조합해 부드러운 확장 애니메이션을 적용하였습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+const allChartItems = document.querySelectorAll('.chart_group li');
+
+allChartItems.forEach((item) => {
+  item.addEventListener('mouseenter', function () {
+    if (this.classList.contains('active')) return;
+
+    allChartItems.forEach(li => li.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+/* SCSS */
+.chart_group li {
+  height: rem(45);
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.active {
+    height: rem(70);
+
+    .chart_thumb {
+      width: rem(60);
+      opacity: 1;
+    }
+  }
+
+  .chart_thumb {
+    width: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. 검색 풀다운 & 최근 검색어
+PC에서 검색창 클릭 시 풀다운이 노출되고,
+검색 실행 시 최근 검색어 목록 상단에 동적으로 추가됩니다.
+최대 10개 초과 시 가장 오래된 항목을 자동 삭제하며,
+외부 영역 클릭 시 풀다운이 닫히도록 document 이벤트로 처리하였습니다.
+모바일에서는 검색 아이콘 클릭 시 별도 전체화면 검색 페이지로 전환됩니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+// 최근 검색어 추가
+function addRecentSearch() {
+  const $input = isPC() ? $('.search_input_wrapper input') : $('#searchInput');
+  const keyword = $input.val().trim();
+  if (keyword === '') return;
+
+  const now = new Date();
+  const dateStr = `${now.getMonth() + 1}.${now.getDate()}.`;
+  const newItem = `<li>
+    <span class="keyword">${keyword}</span>
+    <div class="info">
+      <span class="date">${dateStr}</span>
+      <button class="btn_del">✕</button>
+    </div>
+  </li>`;
+
+  $('.recent_list').prepend(newItem);
+  $input.val('');
+
+  // 10개 초과 시 삭제
+  $('.recent_list').each(function () {
+    while ($(this).find('li').length > 10) {
+      $(this).find('li').last().remove();
+    }
+  });
+}
+
+// 외부 클릭 시 풀다운 닫기
+$(document).on('click', function (e) {
+  if (!$(e.target).closest('.search_box').length) {
+    $('.search_pulldown').removeClass('on');
+  }
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. 플레이어 재생 상태 전역 동기화
+차트, 추천 플레이리스트, 에디터 추천 등 페이지 내 모든 재생 버튼이
+바텀 플레이어·풀 플레이어와 동시에 상태를 공유하도록 구현하였습니다.
+syncMainPlayers()와 syncListButtons() 두 함수로 역할을 분리하여,
+어느 버튼을 클릭해도 전체 UI가 일관된 상태로 업데이트됩니다.
+현재 재생 중인 곡의 제목을 기준으로 버튼 상태를 판별합니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+// 메인 컨트롤러 동기화
+function syncMainPlayers(isPlaying) {
+  const faIcon = isPlaying ? 'fa-pause' : 'fa-play';
+  const iconText = isPlaying ? 'pause' : 'play_arrow';
+
+  $('.btn_main').toggleClass('on', isPlaying)
+    .find('i').removeClass('fa-play fa-pause').addClass(faIcon);
+
+  $('.full_player .bot_box .btn_play').toggleClass('on', isPlaying)
+    .find('.material-symbols-rounded').text(iconText);
+}
+
+// 리스트 버튼 동기화
+function syncListButtons(currentTitle, isPlaying) {
+  $('.scroll_list li, .list_content, .user_list li, .chart_group li').each(function () {
+    const targetTitle = $(this).find('.title, .user_list_title, .song_name').first().text().trim();
+    const $btn = $(this).find('.btn_play, .btn_unit_play');
+
+    if (targetTitle === currentTitle) {
+      $btn.addClass('on').find('.material-symbols-rounded').text(isPlaying ? 'pause' : 'play_arrow');
+    } else {
+      $btn.removeClass('on').find('.material-symbols-rounded').text('play_arrow');
+    }
+  });
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. 플레이어 화면 전환 (home / full / list)
+바텀 플레이어 → 풀스크린 플레이어 → 플레이리스트 화면의
+세 가지 뷰 전환을 setPlayerState() 단일 함수로 관리하도록 구현하였습니다.
+상태값(home/full/list)에 따라 각 요소의 클래스와 스크롤을 일괄 처리하여
+분산된 이벤트 핸들러 없이 명확하게 뷰를 제어할 수 있습니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+function setPlayerState(state) {
+  const isHome = state === 'home';
+  const isFull = state === 'full';
+  const isList = state === 'list';
+
+  $('.bottom_player').toggleClass('hidden', !isHome);
+  $('.full_player').toggleClass('on', isFull || isList);
+  $('.play_list_layer').toggleClass('on', isList);
+
+  $('body').css('overflow', isHome ? 'auto' : 'hidden');
+}
+
+// 바텀 플레이어 클릭 → 풀 플레이어
+$('.bottom_player').on('click', function (e) {
+  if ($(e.target).closest('.btn_action').length) return;
+  setPlayerState('full');
+});
+
+// 플레이리스트 버튼
+$(document).on('click', '.btn_down', function (e) {
+  e.stopPropagation();
+  setPlayerState('list');
+});
+
+// 닫기 버튼
+$(document).on('click', '.btn_more', function (e) {
+  e.stopPropagation();
+  setPlayerState('home');
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. JSON fetch & 동적 목록 렌더링
+매거진 서브 페이지의 기사 목록을 외부 JSON 파일(news_data.json)에서
+fetch로 불러와 innerHTML로 동적 생성하도록 구현하였습니다.
+데이터를 날짜 기준으로 내림차순 정렬한 뒤 renderList()로 출력하며,
+좋아요·북마크 수치는 formatNumber()로 k/m 단위 변환하여 표시합니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+fetch('./js/news_data.json')
+  .then(res => res.json())
+  .then(data => {
+    allData = data.sort((a, b) =>
+      new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-'))
+    );
+    renderList();
+  });
+
+// 목록 렌더링
+listContainer.innerHTML = dataToRender.map(item => `
+  <li>
+    <div class="date"><p>${item.day}</p><p>${item.date}</p></div>
+    <div class="thumb_img" style="background-image: url('./images/${item.img}')"></div>
+    <div class="text_box">
+      <div class="title">${item.title}</div>
+      <p class="news_content">${item.content}</p>
+    </div>
+    <div class="icon">
+      <div class="heart_icon">
+        <span class="material-symbols-rounded">favorite</span>
+        <span>${formatNumber(item.likes)}</span>
+      </div>
+      <div class="bookmark_icon">
+        <span class="material-symbols-rounded">bookmark</span>
+        <span>${formatNumber(item.bookmarks)}</span>
+      </div>
+    </div>
+  </li>
+`).join('');
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'm';
+  if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  return num;
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. 반응형 더보기 ↔ 페이지네이션
+매거진 기사 목록을 화면 너비에 따라
+PC(1070px 이상)에서는 페이지네이션, 모바일/태블릿에서는 더보기 방식으로
+각각 다르게 렌더링하도록 구현하였습니다.
+renderList() 함수 내에서 window.innerWidth로 분기하며,
+resize 이벤트에 연결하여 창 크기가 바뀌어도 자동으로 전환됩니다.
+더보기 모드에서는 5개씩 추가 노출되고, 전체 노출 시 버튼이 "접기"로 전환됩니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+function renderList() {
+  const isTabletOrMobile = window.innerWidth < 1070;
+
+  if (isTabletOrMobile) {
+    // 모바일/태블릿: 더보기 방식
+    dataToRender = allData.slice(0, displayedCount);
+    if (paginationContainer) paginationContainer.innerHTML = '';
+  } else {
+    // PC: 페이지네이션 방식
+    const start = (currentPage - 1) * itemsPerPage;
+    dataToRender = allData.slice(start, start + itemsPerPage);
+    renderPagination();
+  }
+
+  moreBtn.innerText = displayedCount >= allData.length ? '접기' : '더보기';
+}
+
+moreBtn.addEventListener('click', () => {
+  if (displayedCount >= allData.length) {
+    displayedCount = DEFAULT_COUNT;
+    window.scrollTo({ top: document.querySelector('.filter').offsetTop - 20, behavior: 'smooth' });
+  } else {
+    displayedCount += 5;
+  }
+  renderList();
+});
+
+window.addEventListener('resize', renderList);
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+10. 매거진 필터 정렬
+매거진 목록 상단의 필터(날짜순 / 좋아요순 / 북마크순) 클릭 시
+allData 배열을 sort()로 재정렬한 뒤 renderList()를 다시 호출하도록 구현하였습니다.
+정렬 변경 시 표시 상태(displayedCount, currentPage)를 초기화하여
+항상 첫 화면부터 새로운 순서로 출력됩니다.
+
+──────────────────────────────────────
+코드
+──────────────────────────────────────
+filterItems.forEach(filter => {
+  filter.addEventListener('click', (e) => {
+    filterItems.forEach(li => li.classList.remove('on'));
+    e.target.classList.add('on');
+
+    const filterType = e.target.innerText;
+
+    if (filterType === '좋아요 순') {
+      allData.sort((a, b) => b.likes - a.likes);
+    } else if (filterType === '북마크 순') {
+      allData.sort((a, b) => b.bookmarks - a.bookmarks);
+    } else {
+      allData.sort((a, b) =>
+        new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-'))
+      );
+    }
+
+    displayedCount = DEFAULT_COUNT;
+    currentPage = 1;
+    renderList();
+  });
+});
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
