@@ -1322,6 +1322,101 @@ body {
     }
   }
 
+  .project_down_note {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project_detail_note {
+    width: 100%;
+
+    .code_index_wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+
+    .idx_prev,
+    .idx_next {
+      background: #eee;
+      border: none;
+      width: 24px;
+      height: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      color: $point;
+      flex-shrink: 0;
+
+      &:hover {
+        background: $point;
+        color: #fff;
+      }
+    }
+
+    .code_index {
+      display: flex;
+      gap: rem(10);
+      overflow-x: auto;
+
+      li {
+        padding: rem(8) rem(20);
+        background: #eee;
+        cursor: pointer;
+        flex-shrink: 0;
+        list-style: none;
+
+        &.active {
+          background: $point;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .note_content {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .note_img {
+    flex: 0 0 50%;
+    border-radius: rem(6);
+    overflow: hidden;
+    background: #f0f0f0;
+
+    img {
+      width: 100%;
+      height: 20rem;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .note_text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding-top: 0.25rem;
+  }
+
+  .note_block {
+    h4 {
+      font-size: rem(15);
+      font-weight: 700;
+      color: $dark-gray;
+      margin-bottom: rem(6);
+    }
+
+    p {
+      font-size: rem(15);
+      line-height: 1.8;
+      color: #666;
+    }
+  }
+
 }
 
 .scroll_hint {
