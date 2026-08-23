@@ -86,7 +86,7 @@
 
           <div class="slide01_main">
             <p class="slide01_bg_txt">PUBLISHING<br>PORTFOLIO</p>
-            <h1 class="slide01_headline">웹을 한 권의 책처럼<br>정갈하게 담아냅니다.</h1>
+            <h1 class="start_title">웹을 한 권의 책처럼<br>정갈하게 담아냅니다.</h1>
           </div>
 
           <div class="slide01_sub">
@@ -107,9 +107,8 @@
     </section>
 
     <section class="slide02 slide">
-      <!-- <div class="slide_title">Profile</div> -->
+      <div class="slide_title">Profile</div>
       <div class="slide_inner">
-        <div class="slide_title">Profile</div>
         <div class="slide02_between">
           <div class="left_slide02">
             <div class="profile_photo">
@@ -176,8 +175,8 @@
     </section>
 
     <section class="slide03 slide">
+      <div class="slide_title">SKILL</div>
       <div class="slide_inner">
-        <div class="slide_title">SKILL</div>
         <div class="skill_wrap">
           <div class="Main_skill skill">
             <div class="skill_info">
@@ -255,60 +254,56 @@
     </section>
 
     <section class="slide04 slide">
-      <div class="slide_inner">
-        <div class="slide_title">Project</div>
-        <p class="project_subtitle">프로젝트 아카이브, 클릭 시 상세 정보로 이어집니다.</p>
-        <div class="project_wrap">
-          <div class="original_site project">
-            <div class="Mockup_img">
-              <img src="./images/project01.png" alt="Site01">
-              <div class="thumb_arrow"></div>
-            </div>
-            <div class="site_title">오리지널 사이트</div>
-            <ul class="site_hash">
-              <li>#오리지널</li>
-              <li>#첫작품</li>
-              <li>#1인제작</li>
-            </ul>
-            <div class="site_txt">
-              <p class="site_info">전통의상과 소품을 판매하는 쇼핑몰 사이트</p>
+      <div class="slide_title">Project</div>
+      <p class="project_subtitle">프로젝트 아카이브 — 클릭 시 상세 정보로 이어집니다.</p>
+
+      <div class="carousel_stage">
+        <div class="carousel_track">
+          <div class="carousel_card project" data-pos="0" data-index="0">
+            <div class="card_mockup"><img src="./images/project01.png" alt="오노라"></div>
+            <div class="card_info">
+              <div class="card_hint">클릭하여 상세 보기 →</div>
+              <p class="card_issue">Issue No. 01 — Main Feature</p>
+              <h3 class="card_name">오노라 쇼핑몰</h3>
+              <p class="card_desc">전통의상과 소품을 판매하는 쇼핑몰 · 1인 제작</p>
+              <div class="card_tags"><span>HTML5</span><span>SCSS</span><span>JavaScript</span><span>GSAP</span></div>
             </div>
           </div>
-          <div class="responsive_site project">
-            <div class="Mockup_img">
-              <img src="./images/project02.png" alt="Site02">
-              <div class="thumb_arrow"></div>
-            </div>
-            <div class="site_title">멜론 반응형 리디자인</div>
-            <ul class="site_hash">
-              <li>#팀 프로젝트</li>
-              <li>#반응형</li>
-              <li>#리뉴얼</li>
-            </ul>
-            <div class="site_txt">
-              <p class="site_info">별개의 모바일 주소를 사용하는 멜론 사이트를 반응형 사이트로 리뉴얼하는 프로젝트 (비공식)</p>
+          <div class="carousel_card project" data-pos="1" data-index="1">
+            <div class="card_mockup"><img src="./images/project02.png" alt="멜론"></div>
+            <div class="card_info">
+              <div class="card_hint">클릭하여 상세 보기 →</div>
+              <p class="card_issue">Issue No. 02</p>
+              <h3 class="card_name">멜론 반응형 리디자인</h3>
+              <p class="card_desc">모바일 사이트를 반응형으로 리뉴얼</p>
+              <div class="card_tags"><span>jQuery</span><span>Responsive</span></div>
             </div>
           </div>
-          <div class="promotion_site project">
-            <div class="Mockup_img">
-              <img src="./images/project03.png" alt="Site03">
-              <div class="thumb_arrow"></div>
-            </div>
-            <div class="site_title">동화약품 프로모션 홈페이지</div>
-            <ul class="site_hash">
-              <li>#리뉴얼</li>
-              <li>#GSAP</li>
-              <li>#1인제작</li>
-            </ul>
-            <div class="site_txt">
-              <p class="site_subject">자체 리뉴얼 프로젝트</p>
-              <p class="site_info">동화약품사 홈페이지의 메인 페이지를 프로모션 형식으로 리뉴얼</p>
+          <div class="carousel_card project" data-pos="-1" data-index="2">
+            <div class="card_mockup"><img src="./images/project03.png" alt="동화약품"></div>
+            <div class="card_info">
+              <div class="card_hint">클릭하여 상세 보기 →</div>
+              <p class="card_issue">Issue No. 03</p>
+              <h3 class="card_name">동화약품 프로모션</h3>
+              <p class="card_desc">프로모션 형식 메인 페이지 리뉴얼</p>
+              <div class="card_tags"><span>GSAP</span><span>ScrollTrigger</span></div>
             </div>
           </div>
         </div>
-        <div class="project_copyright">
-          <p>본 프로젝트들은 학습 및 포트폴리오 제작 목적으로 제작되었습니다. 사용된 모든 이미지의 저작권은 원작자에게 있으며, 상업적인 용도로 사용하지 않습니다.</p>
-        </div>
+      </div>
+
+      <div class="carousel_nav">
+        <button type="button" class="carousel_btn carousel_prev">←</button>
+        <button type="button" class="carousel_btn carousel_next">→</button>
+      </div>
+      <div class="carousel_dots">
+        <div class="carousel_dot active" data-dot="0"></div>
+        <div class="carousel_dot" data-dot="1"></div>
+        <div class="carousel_dot" data-dot="2"></div>
+      </div>
+
+      <div class="project_copyright">
+        <p>본 프로젝트들은 학습 및 포트폴리오 제작 목적으로 제작되었습니다. 사용된 모든 이미지의 저작권은 원작자에게 있으며, 상업적인 용도로 사용하지 않습니다.</p>
       </div>
     </section>
   </div>
@@ -337,7 +332,17 @@
             <div class="project_up">
               <div class="project_up_set01">
                 <div class="project_img">
-                  <img src="./images/project01.png" alt="오리지널 프로젝트">
+                  <div class="browser_frame">
+                    <div class="browser_bar">
+                      <div class="browser_dot close"></div>
+                      <div class="browser_dot minimize"></div>
+                      <div class="browser_dot maximize"></div>
+                      <div class="browser_url">yeonju-s5.github.io/original_site_Onora</div>
+                    </div>
+                    <div class="browser_viewport">
+                      <iframe src="https://yeonju-s5.github.io/original_site_Onora/" loading="lazy"></iframe>
+                    </div>
+                  </div>
                 </div>
                 <div class="project_shortcut">
                   <ul class="shortcut_title">
@@ -740,7 +745,17 @@
             <div class="project_up">
               <div class="project_up_set01">
                 <div class="project_img">
-                  <img src="./images/project02.png" alt="반응형 프로젝트">
+                  <div class="browser_frame">
+                    <div class="browser_bar">
+                      <div class="browser_dot close"></div>
+                      <div class="browser_dot minimize"></div>
+                      <div class="browser_dot maximize"></div>
+                      <div class="browser_url">seoyj0505.dothome.co.kr</div>
+                    </div>
+                    <div class="browser_viewport">
+                      <iframe src="https://seoyj0505.dothome.co.kr/" loading="lazy"></iframe>
+                    </div>
+                  </div>
                 </div>
                 <div class="project_shortcut">
                   <ul class="shortcut_title">
@@ -1025,7 +1040,7 @@
           </div>
         </div>
       </div> <!--Slide02-->
-      <div class="project02_form site_detail">
+      <div class="project03_form site_detail">
         <div class="inner">
           <header class="project_index">
             <div>03</div>
@@ -1036,7 +1051,17 @@
             <div class="project_up">
               <div class="project_up_set01">
                 <div class="project_img">
-                  <img src="./images/project03.png" alt="프로모션 사이트">
+                  <div class="browser_frame">
+                    <div class="browser_bar">
+                      <div class="browser_dot close"></div>
+                      <div class="browser_dot minimize"></div>
+                      <div class="browser_dot maximize"></div>
+                      <div class="browser_url">yeonju-s5.github.io/promotion_site_DW</div>
+                    </div>
+                    <div class="browser_viewport">
+                      <iframe src="https://yeonju-s5.github.io/promotion_site_DW/" loading="lazy"></iframe>
+                    </div>
+                  </div>
                 </div>
                 <div class="project_shortcut">
                   <ul class="shortcut_title">
@@ -1321,33 +1346,61 @@
           <!-- BANNER -->
           <div class="gallery_item" data-cate="banner" onclick="openModal('banner')">
             <div class="gallery_index">No. 01</div>
-            <div class="thumb_box">
-              <img src="./images/preview_banner.png" alt="배너 작업 미리보기">
+            <div class="thumb_box thumb_stack stack_mixed">
+              <img class="stack_img s1" src="./images/banner03.png" alt="일반 배너">
+              <img class="stack_img s2" src="./images/banner09.png" alt="띠배너">
+              <img class="stack_img s3" src="./images/CardBanner01.png" alt="카드배너1">
+              <img class="stack_img s4" src="./images/CardBanner02.png" alt="카드배너2">
               <span class="thumb_tag">Banner</span>
               <div class="thumb_arrow"></div>
             </div>
-            <div class="gallery_card_title">배너 제작</div>
+            <div class="gallery_card_title">배너 디자인</div>
             <p class="gallery_card_desc">이벤트·프로모션 배너 디자인.<br>시즌별 콘셉트 기획부터 시각화까지.</p>
             <div class="gallery_card_footer">
-              <span class="gallery_meta">Web · Print</span>
+              <span class="gallery_meta">Web · Mobile</span>
               <span class="gallery_cta"><span></span>View All</span>
             </div>
+            <div class="gallery_card_count">16 works</div>
           </div>
 
           <!-- DESIGN -->
           <div class="gallery_item" data-cate="design" onclick="openModal('design')">
             <div class="gallery_index">No. 02</div>
-            <div class="thumb_box">
-              <img src="./images/preview_design.png" alt="디자인 작업 미리보기">
+            <div class="thumb_box thumb_stack stack_portrait">
+              <img class="stack_img s1" src="./images/design_free02.png" alt="근하신년">
+              <img class="stack_img s2" src="./images/design_free05.png" alt="핑크펭귄">
+              <img class="stack_img s3" src="./images/design_free03.jpg" alt="신문뉴스">
               <span class="thumb_tag">Design</span>
               <div class="thumb_arrow"></div>
             </div>
-            <div class="gallery_card_title">디자인 작업</div>
+            <div class="gallery_card_title">그래픽 디자인</div>
             <p class="gallery_card_desc">그래픽·편집 디자인 작업물 모음.<br>브랜딩, 타이포, 레이아웃 실험 포함.</p>
             <div class="gallery_card_footer">
               <span class="gallery_meta">Graphic · Editorial</span>
               <span class="gallery_cta"><span></span>View All</span>
             </div>
+            <div class="gallery_card_count">6 works</div>
+          </div>
+
+          <!-- AI -->
+          <div class="gallery_item" data-cate="ai" onclick="openModal('ai')">
+            <div class="gallery_index">No. 03</div>
+            <div class="thumb_box thumb_ba_preview">
+              <img class="ba_after" src="./images/ai07.png" alt="스위스 After">
+              <img class="ba_before" src="./images/ai07_before.png" alt="스위스 Before">
+              <div class="ba_divider"></div>
+              <span class="ba_label ba_label_before">Before</span>
+              <span class="ba_label ba_label_after">After</span>
+              <span class="thumb_tag">AI</span>
+              <div class="thumb_arrow"></div>
+            </div>
+            <div class="gallery_card_title">AI 활용</div>
+            <p class="gallery_card_desc">Photoshop AI 생성형 채우기 활용.<br>이미지 확장, 요소 추가, AI 생성 작업.</p>
+            <div class="gallery_card_footer">
+              <span class="gallery_meta">Photoshop · Generative</span>
+              <span class="gallery_cta"><span></span>View All</span>
+            </div>
+            <div class="gallery_card_count">7 works</div>
           </div>
 
         </div>
@@ -1370,45 +1423,85 @@
           <div id="bannerContent">
             <div class="masonry_label">Banner Works</div>
             <div class="masonry_grid">
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner01.png" alt="배너01">
-                <div class="masonry_caption">Onora 배너01</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">색동 노방 뷔스티에 — Onora</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner02.png" alt="배너02">
-                <div class="masonry_caption">Onora 배너02</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">가을 한복 컬렉션 — Onora</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner03.png" alt="배너03">
-                <div class="masonry_caption">Onora 배너03</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">BEST 아이템 — Onora</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner04.png" alt="배너04">
-                <div class="masonry_caption">Onora 이벤트 배너(숏배너)</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">이벤트 배너 — Onora</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner05.png" alt="배너05">
-                <div class="masonry_caption">Melon 배너01</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">WINTER SALE — Melon</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner06.png" alt="배너06">
-                <div class="masonry_caption">Melon 배너02</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">기획전 배너 — Melon</div>
               </div>
-              <div class="masonry_item full">
+              <div class="masonry_item" data-type="regular">
                 <img src="./images/banner07.png" alt="배너07">
-                <div class="masonry_caption">Melon 배너03</div>
+                <span class="masonry_type_tag">일반</span>
+                <div class="masonry_caption">DJ 이벤트 — Melon</div>
               </div>
-              <div class="masonry_item full">
-                <img src="./images/banner08.png" alt="배너08">
-                <div class="masonry_caption">띠배너01</div>
+              <div class="masonry_item" data-type="strip">
+                <img src="./images/banner08.png" alt="띠배너01">
+                <span class="masonry_type_tag">띠배너</span>
+                <div class="masonry_caption">띠배너 01</div>
               </div>
-              <div class="masonry_item full">
-                <img src="./images/banner09.png" alt="배너09">
-                <div class="masonry_caption">띠배너02</div>
+              <div class="masonry_item" data-type="strip">
+                <img src="./images/banner09.png" alt="띠배너02">
+                <span class="masonry_type_tag">띠배너</span>
+                <div class="masonry_caption">띠배너 02</div>
               </div>
-              <div class="masonry_item full">
-                <img src="./images/banner10.png" alt="배너10">
-                <div class="masonry_caption">띠배너03</div>
+              <div class="masonry_item" data-type="strip">
+                <img src="./images/banner10.png" alt="띠배너03">
+                <span class="masonry_type_tag">띠배너</span>
+                <div class="masonry_caption">띠배너 03</div>
+              </div>
+              <div class="masonry_item" data-type="wide">
+                <img src="./images/banner11.png" alt="와이드01">
+                <span class="masonry_type_tag">와이드</span>
+                <div class="masonry_caption">세트 의상 특별전 — Onora</div>
+              </div>
+              <div class="masonry_item" data-type="wide">
+                <img src="./images/banner12.png" alt="와이드02">
+                <span class="masonry_type_tag">와이드</span>
+                <div class="masonry_caption">색동노방 뷔스티에 — Onora</div>
+              </div>
+              <div class="masonry_item" data-type="wide">
+                <img src="./images/banner13.png" alt="와이드03">
+                <span class="masonry_type_tag">와이드</span>
+                <div class="masonry_caption">인기 상품 ~45% OFF — Onora</div>
+              </div>
+              <div class="masonry_item" data-type="mobile">
+                <img src="./images/CardBanner01.png" alt="모바일01">
+                <span class="masonry_type_tag">모바일</span>
+                <div class="masonry_caption">세트 의상 특별전 — 모바일</div>
+              </div>
+              <div class="masonry_item" data-type="mobile">
+                <img src="./images/CardBanner02.png" alt="모바일02">
+                <span class="masonry_type_tag">모바일</span>
+                <div class="masonry_caption">색동노방 뷔스티에 — 모바일</div>
+              </div>
+              <div class="masonry_item" data-type="mobile">
+                <img src="./images/CardBanner03.png" alt="모바일03">
+                <span class="masonry_type_tag">모바일</span>
+                <div class="masonry_caption">인기 상품 — 모바일</div>
               </div>
             </div>
           </div>
@@ -1418,32 +1511,199 @@
             <div class="masonry_label">Design Works</div>
             <div class="masonry_grid">
               <div class="masonry_item">
-                <img src="./images/design_free01.png" alt="디자인01">
-                <div class="masonry_caption">작업물 01</div>
+                <img src="./images/design_free00.jpg" alt="신문">
+                <div class="masonry_caption">신문 레이아웃</div>
               </div>
               <div class="masonry_item">
-                <img src="./images/design_free02.png" alt="디자인02">
-                <div class="masonry_caption">작업물 02</div>
+                <img src="./images/design_free01.png" alt="캐릭터 디자인">
+                <div class="masonry_caption">캐릭터 디자인</div>
               </div>
               <div class="masonry_item">
-                <img src="./images/design_free03.png" alt="디자인03">
-                <div class="masonry_caption">작업물 03</div>
+                <img src="./images/design_free02.png" alt="근하신년">
+                <div class="masonry_caption">타이포그래피 — 근하신년</div>
               </div>
               <div class="masonry_item">
-                <img src="./images/design_free04.jpg" alt="디자인04">
-                <div class="masonry_caption">작업물 04</div>
+                <img src="./images/design_free03.jpg" alt="신문뉴스">
+                <div class="masonry_caption">신문 뉴스 레이아웃</div>
               </div>
               <div class="masonry_item">
-                <img src="./images/design_free05.png" alt="디자인05">
-                <div class="masonry_caption">작업물 05</div>
+                <img src="./images/design_free04.png" alt="동물 캐릭터">
+                <div class="masonry_caption">동물 캐릭터 그림</div>
               </div>
               <div class="masonry_item">
-                <img src="./images/design_free06.png" alt="디자인06">
-                <div class="masonry_caption">작업물 06</div>
+                <img src="./images/design_free05.png" alt="핑크펭귄">
+                <div class="masonry_caption">핑크펭귄</div>
               </div>
-              <div class="masonry_item">
-                <img src="./images/design_free07.png" alt="디자인06">
-                <div class="masonry_caption">작업물 07</div>
+            </div>
+          </div>
+
+          <!-- AI content -->
+          <div id="aiContent" style="display:none;">
+            <div class="filter_tabs">
+              <button class="filter_tab active" onclick="filterAI('all', this)">전체<span class="filter_count">7</span></button>
+              <button class="filter_tab" onclick="filterAI('retouch', this)">AI 리터칭<span class="filter_count">6</span></button>
+              <button class="filter_tab" onclick="filterAI('generate', this)">AI 생성<span class="filter_count">1</span></button>
+            </div>
+            <div class="ai_grid" id="aiGrid">
+              <div class="ai_item" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">소개 페이지 — 색 보정 · 인물 추가</div>
+                    <span class="ai_tag retouch">요소 추가</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider" data-pos="50">
+                  <img class="ba_after" src="./images/ai01_after.png" alt="After">
+                  <img class="ba_before" src="./images/ai01_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">호텔 컨셉에 맞게 색감을 보정하고, 직접 확인하는 듯한 인물을 AI로 추가.</div>
+              </div>
+
+              <div class="ai_item" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">비주얼 배너 01 — 아이템 추가</div>
+                    <span class="ai_tag retouch">요소 추가</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider slider_wide" data-pos="50">
+                  <img class="ba_after" src="./images/ai02.png" alt="After">
+                  <img class="ba_before" src="./images/ai02_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">우상단·우하단에 선물 박스와 쇼핑백을 AI로 추가하여 프로모션 분위기 연출.</div>
+              </div>
+
+              <div class="ai_item" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">비주얼 배너 02 — 배경 확장</div>
+                    <span class="ai_tag retouch">배경 확장</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider slider_wide" data-pos="50">
+                  <img class="ba_after" src="./images/ai03.png" alt="After">
+                  <img class="ba_before" src="./images/ai03_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">비주얼 배너용 이미지의 배경을 AI 생성형 채우기로 확장하여 넓은 화면 비율에 대응.</div>
+              </div>
+
+              <div class="ai_item ai_half" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">발리 — 요소 추가</div>
+                    <span class="ai_tag retouch">요소 추가</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider slider_portrait" data-pos="50">
+                  <img class="ba_after" src="./images/ai04.png" alt="After">
+                  <img class="ba_before" src="./images/ai04_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">우상단에 열대 나무를 채워 넣고, 좌하단에 건물 요소를 AI로 추가하여 구도 보완.</div>
+              </div>
+
+              <div class="ai_item ai_half" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">아이슬란드 — 인물 변경</div>
+                    <span class="ai_tag retouch">요소 추가</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider slider_portrait" data-pos="50">
+                  <img class="ba_after" src="./images/ai05.png" alt="After">
+                  <img class="ba_before" src="./images/ai05_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">우하단의 1인 인물을 커플(2인)로 AI 변경. 여행지 이미지에 동행 감성 추가.</div>
+              </div>
+
+              <div class="ai_item ai_half" data-ai-type="retouch">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">제주 — 요소 추가</div>
+                    <span class="ai_tag retouch">요소 추가</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 채우기</div>
+                </div>
+                <div class="ba_slider slider_portrait" data-pos="50">
+                  <img class="ba_after" src="./images/ai06.png" alt="After">
+                  <img class="ba_before" src="./images/ai06_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">우상단에 배를 추가하고, 전봇대 아래에 꽃덤불을 AI로 배치하여 풍경에 생동감 부여.</div>
+              </div>
+
+              <div class="ai_item ai_half" data-ai-type="generate">
+                <div class="ai_item_head">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="ai_item_title">스위스 — AI 생성 · 요소 추가</div>
+                    <span class="ai_tag generate">생성</span>
+                  </div>
+                  <div class="ai_item_tool">Photoshop · 생성형 이미지 · 채우기</div>
+                </div>
+                <div class="ba_slider slider_portrait" data-pos="50">
+                  <img class="ba_after" src="./images/ai07.png" alt="After">
+                  <img class="ba_before" src="./images/ai07_before.png" alt="Before">
+                  <div class="ba_handle">
+                    <div class="ba_handle_btn">
+                      <div class="arrow left"></div>
+                      <div class="arrow right"></div>
+                    </div>
+                  </div>
+                  <span class="ba_label before">Before</span>
+                  <span class="ba_label after">After</span>
+                </div>
+                <div class="ai_item_desc">풍경을 AI로 생성 후, 여행사 이미지에 맞게 인물과 언덕 아래 마을을 추가하여 자연스러운 구도 완성.</div>
               </div>
             </div>
           </div>
@@ -1464,13 +1724,12 @@
         <div class="closing_body">
 
           <div class="closing_left">
-            <p class="closing_issue">Vol. 01 · 2025</p>
-            <h2 class="slide_title">Thanks<br>For<br>Reading</h2>
+            <p class="closing_issue">Vol. 01 · 2026</p>
+            <h2 class="end_title">Thanks For<br>Reading</h2>
             <p class="closing_sub">읽어주셔서 감사합니다.</p>
           </div>
 
           <div class="closing_right">
-
             <div class="contact_block">
               <span class="contact_label">Contact</span>
               <ul class="contact_list">
@@ -1480,15 +1739,9 @@
                 </li>
                 <li>
                   <span class="contact_key">E-mail</span>
-                  <span class="contact_val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                      data-cfemail="a8dbcdc7d1c2989d989de8c6c9decdda86cbc7c5">seoyj0505@naver.com</a></span>
+                  <span class="contact_val">seoyj0505@naver.com</span>
                 </li>
               </ul>
-            </div>
-
-            <div class="closing_img_wrap">
-              <img src="./images/img_end.png" alt="마무리 사진">
-              <div class="img_caption">ⓒ 2025 · Publisher Portfolio</div>
             </div>
           </div>
         </div>

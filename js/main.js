@@ -33,7 +33,6 @@ const menuHeight = document.querySelector('.main_menu_outer').offsetHeight;
 document.querySelectorAll('.slide02, .slide04, .slide05').forEach(el => {
   el.style.paddingTop = menuHeight + 'px';
   el.style.boxSizing = 'border-box';
-  el.style.justifyContent = 'center';
 });
 
 document.querySelector('.slide03').style.paddingTop = menuHeight + 'px';
@@ -66,10 +65,28 @@ window.addEventListener('resize', () => {
 // 인트로 애니메이션
 const tlIntro = gsap.timeline();
 tlIntro
-  .from('.slide01_meta', { opacity: 0, y: 10, duration: 0.6, ease: 'power2.out' })
-  .from('.slide01_headline', { opacity: 0, y: 30, duration: 0.9, ease: 'power2.out' }, '-=0.2')
+  .from('.slide01 .rule_line', { scaleX: 0, transformOrigin: 'center', duration: 0.9, ease: 'power3.out', stagger: 0.12 })
+  .from('.slide01_meta', { opacity: 0, y: 10, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+  .from('.start_title', { opacity: 0, y: 30, duration: 0.9, ease: 'power2.out' }, '-=0.2')
   .from('.slide01_bg_txt', { opacity: 0, x: 20, duration: 0.8, ease: 'power2.out' }, '-=0.5')
   .from('.slide01_sub', { opacity: 0, y: 10, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+
+
+// slide06 애니메이션
+const tlClosing = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.slide06',
+    start: 'top 80%',
+  }
+});
+tlClosing
+  .from('.slide06 > .slide06_inner > .rule_block .rule_line', { scaleX: 0, transformOrigin: 'center', duration: 0.9, ease: 'power3.out', stagger: 0.12 })
+  .from('.closing_issue', { opacity: 0, y: 10, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+  .from('.end_title', { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' }, '-=0.2')
+  .from('.closing_sub', { opacity: 0, y: 10, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+  .from('.closing_right', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+  .from('.closing_footer .rule_line', { scaleX: 0, transformOrigin: 'center', duration: 0.7, ease: 'power3.out', stagger: 0.1 }, '-=0.2')
+  .from('.closing_footer_text', { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2')
 
 
 // 프로젝트 패널
@@ -102,9 +119,56 @@ function closePanel() {
   });
 }
 
-$('.project').on('click', function () {
-  const index = $('.project').index(this);
-  openPanel(index);
+// 프로젝트 캐러셀
+const carouselCards = document.querySelectorAll('.carousel_card');
+const carouselDots = document.querySelectorAll('.carousel_dot');
+let carouselCurrent = 0;
+
+function updateCarousel() {
+  const total = carouselCards.length;
+  carouselCards.forEach(card => {
+    const idx = parseInt(card.dataset.index);
+    let diff = idx - carouselCurrent;
+    if (diff > Math.floor(total / 2)) diff -= total;
+    if (diff < -Math.floor(total / 2)) diff += total;
+    card.dataset.pos = (diff >= -2 && diff <= 2) ? diff : 'hidden';
+  });
+  carouselDots.forEach((dot, i) => dot.classList.toggle('active', i === carouselCurrent));
+}
+
+$('.carousel_next').on('click', function() {
+  carouselCurrent = (carouselCurrent + 1) % carouselCards.length;
+  updateCarousel();
+});
+$('.carousel_prev').on('click', function() {
+  carouselCurrent = (carouselCurrent - 1 + carouselCards.length) % carouselCards.length;
+  updateCarousel();
+});
+$('.carousel_dot').on('click', function() {
+  carouselCurrent = parseInt(this.dataset.dot);
+  updateCarousel();
+});
+
+// 센터 카드 클릭 → 상세 패널, 사이드 카드 클릭 → 센터로 이동
+$('.carousel_card.project').on('click', function () {
+  const pos = this.dataset.pos;
+  if (pos === '0') {
+    openPanel(parseInt(this.dataset.index));
+  } else {
+    carouselCurrent = parseInt(this.dataset.index);
+    updateCarousel();
+  }
+});
+
+// 센터 카드 호버 시 nav 숨기기
+const carouselNav = document.querySelector('.carousel_nav');
+carouselCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    if (card.dataset.pos === '0') carouselNav.classList.add('hide');
+  });
+  card.addEventListener('mouseleave', () => {
+    carouselNav.classList.remove('hide');
+  });
 });
 
 $('.next_btn').on('click', function () {
@@ -137,13 +201,15 @@ $('.code_review_btn').on('click', function() {
 // 갤러리 모달
 function openModal(type) {
   const modalData = {
-    banner: { category: 'Banner Works', title: '배너 <em>제작</em>' },
-    design: { category: 'Design Works', title: '디자인 <em>작업</em>' }
+    banner: { category: 'Banner Works', title: '배너 <em>디자인</em>' },
+    design: { category: 'Design Works', title: '그래픽 <em>디자인</em>' },
+    ai:     { category: 'AI Works', title: 'AI <em>활용</em>' }
   };
   $('#modalCategory').text(modalData[type].category);
   $('#modalTitle').html(modalData[type].title);
   $('#bannerContent').toggle(type === 'banner');
   $('#designContent').toggle(type === 'design');
+  $('#aiContent').toggle(type === 'ai');
   $('#galleryModal').addClass('active');
   document.body.style.overflow = 'hidden';
 }
@@ -156,6 +222,51 @@ function closeModal() {
 $(document).on('keydown', function (e) {
   if (e.key === 'Escape') closeModal();
 });
+
+function filterAI(type, btn) {
+  document.querySelectorAll('#galleryModal .filter_tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('#aiGrid .ai_item').forEach(function(item) {
+    if (type === 'all' || item.dataset.aiType === type) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+}
+
+$(document).on('mousedown', '.ba_slider', function(e) {
+  var slider = this;
+  slider.dataset.dragging = 'true';
+  updateSlider(slider, e.clientX);
+});
+$(document).on('mousemove', function(e) {
+  document.querySelectorAll('.ba_slider[data-dragging="true"]').forEach(function(sl) {
+    updateSlider(sl, e.clientX);
+  });
+});
+$(document).on('mouseup', function() {
+  document.querySelectorAll('.ba_slider').forEach(function(sl) { sl.dataset.dragging = 'false'; });
+});
+$(document).on('touchstart', '.ba_slider', function(e) {
+  this.dataset.dragging = 'true';
+  updateSlider(this, e.touches[0].clientX);
+});
+$(document).on('touchmove', '.ba_slider', function(e) {
+  if (this.dataset.dragging === 'true') updateSlider(this, e.touches[0].clientX);
+});
+$(document).on('touchend', '.ba_slider', function() { this.dataset.dragging = 'false'; });
+
+function updateSlider(sl, x) {
+  var rect = sl.getBoundingClientRect();
+  var pos = ((x - rect.left) / rect.width) * 100;
+  pos = Math.max(2, Math.min(98, pos));
+  sl.dataset.pos = pos;
+  var before = sl.querySelector('.ba_before');
+  var handle = sl.querySelector('.ba_handle');
+  if (before) before.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
+  if (handle) handle.style.left = pos + '%';
+}
 
 
 // 메뉴 클릭 → 슬라이드 이동
