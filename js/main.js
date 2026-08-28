@@ -1,8 +1,10 @@
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
+const isMobile = window.innerWidth <= 767;
+const scrollContainer = isMobile ? document.body : undefined;
+
 const slides = gsap.utils.toArray('.Slide');
 let currentIndex = 0;
-let isAnimating = false;
 
 function updateMenu(index) {
   const lastIndex = slides.length - 1;
@@ -15,37 +17,28 @@ function updateMenu(index) {
 
 function goToSlide(index) {
   if (index < 0 || index >= slides.length) return;
-  isAnimating = true;
   currentIndex = index;
   updateMenu(index);
   slides[index].scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => { isAnimating = false; }, 700);
 }
 
-
-document.querySelector('.Project_news').addEventListener('wheel', (e) => {
-  e.stopPropagation();
-});
-document.getElementById('galleryModal').addEventListener('wheel', (e) => {
-  e.stopPropagation();
-});
-
-window.addEventListener('wheel', (e) => {
-  if (window.innerWidth <= 767) return;
-  if (isAnimating) return;
-
-  e.preventDefault();
-
-  if (e.deltaY > 0) {
-    goToSlide(currentIndex + 1);
-  } else {
-    goToSlide(currentIndex - 1);
-  }
-}, { passive: false });
-
-window.addEventListener('resize', () => {
-  updateMenu(currentIndex);
-});
+if (window.innerWidth > 767) {
+  ScrollTrigger.create({
+    snap: {
+      snapTo: 1 / (slides.length - 1),
+      duration: { min: 0.3, max: 0.6 },
+      delay: 0.1,
+      ease: 'power1.inOut'
+    },
+    onUpdate: (self) => {
+      const newIndex = Math.round(self.progress * (slides.length - 1));
+      if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateMenu(currentIndex);
+      }
+    }
+  });
+}
 
 
 // 인트로 애니메이션
@@ -63,6 +56,7 @@ const tlClosing = gsap.timeline({
   scrollTrigger: {
     trigger: '.Footer',
     start: 'top 80%',
+    scroller: scrollContainer,
   }
 });
 tlClosing
@@ -87,6 +81,7 @@ function openPanel(projectIndex) {
   $panel[0].scrollTop = 0;
   $panel.addClass('Is-open');
   $('.Scroll_hint').addClass('Is-open');
+  document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
   gsap.to($panel[0], { y: '0%', duration: 0.6, ease: 'power3.out' });
 }
@@ -100,6 +95,7 @@ function closePanel() {
       $panel.css('display', 'none');
       $panel.removeClass('Is-open');
       $('.Scroll_hint').removeClass('Is-open');
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
   });
@@ -217,11 +213,13 @@ function openModal(type) {
   $('#designContent').toggle(type === 'design');
   $('#aiContent').toggle(type === 'ai');
   $('#galleryModal').addClass('Active');
+  document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   $('#galleryModal').removeClass('Active');
+  document.documentElement.style.overflow = '';
   document.body.style.overflow = '';
 }
 
@@ -351,6 +349,7 @@ gsap.to('.Right_slide02 > *', {
   scrollTrigger: {
     trigger: '.Slide02',
     start: 'top center',
+    scroller: scrollContainer,
   }
 });
 
@@ -364,6 +363,7 @@ gsap.to('.Profile_info > div', {
   scrollTrigger: {
     trigger: '.Slide02',
     start: 'top center',
+    scroller: scrollContainer,
   }
 });
 

@@ -1,7 +1,6 @@
 @charset "UTF-8";
 html {
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
 }
 body {
   font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
@@ -47,7 +46,6 @@ body {
   justify-content: flex-start;
   box-sizing: border-box;
   height: 100vh;
-  scroll-snap-align: start;
 }
 .Wrap .Slide_inner,
 .Wrap02 .Slide_inner {
@@ -2181,15 +2179,29 @@ body {
 
 /* ── Responsive: Mobile ── */
 @media (max-width: 767px) {
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
   .Mo_br {
     display: inline;
   }
   .Slide {
     height: auto;
     min-height: 100vh;
+    scroll-snap-align: start;
+    justify-content: center;
   }
   .Wrap .Slide01 {
     height: 100vh;
+  }
+  .Wrap .Slide02 {
+    justify-content: flex-start;
   }
   .Wrap .Slide01 .Slide01_inner {
     position: relative;
@@ -2625,16 +2637,17 @@ body {
   }
   .Wrap .Slide04 .Carousel_nav {
     position: absolute;
-    top: 11rem;
-    left: 0;
-    right: 0;
-    height: 16rem;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 5rem);
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.5rem;
+    padding: 0 0.75rem;
     margin-top: 0;
-    z-index: 2;
+    z-index: 10;
     pointer-events: none;
   }
   .Wrap .Slide04 .Carousel_nav.Hide {
