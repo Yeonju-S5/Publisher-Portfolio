@@ -1,6 +1,7 @@
 @charset "UTF-8";
 html {
   overflow-x: hidden;
+  scroll-snap-type: y mandatory;
 }
 body {
   font-family: "KoPub World Dotum", "KoPubWorldDotum", sans-serif;
@@ -8,22 +9,7 @@ body {
 }
 
 .Main_menu_outer {
-  width: 100%;
-  padding: 0.625rem;
-  border-top: 2px solid #323232;
-  border-bottom: 1px solid #323232;
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  background-color: #fff;
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.Main_menu_outer.On_content {
-  opacity: 1;
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: none;
 }
 
 .Main_menu_inner {
@@ -61,7 +47,7 @@ body {
   justify-content: flex-start;
   box-sizing: border-box;
   height: 100vh;
-  padding-top: 72px;
+  scroll-snap-align: start;
 }
 .Wrap .Slide_inner,
 .Wrap02 .Slide_inner {
@@ -2195,29 +2181,12 @@ body {
 
 /* ── Responsive: Mobile ── */
 @media (max-width: 767px) {
-  .Main_menu_outer {
-    padding: 0.5rem 0.625rem;
-  }
-  .Main_menu {
-    font-size: 0.875rem;
-  }
-  .Main_menu ul {
-    gap: 0.75rem;
-  }
-  .Menu_logo {
-    width: 3.5rem;
-    height: 1.125rem;
-  }
   .Mo_br {
     display: inline;
-  }
-  html {
-    scroll-snap-type: y proximity;
   }
   .Slide {
     height: auto;
     min-height: 100vh;
-    scroll-snap-align: start;
   }
   .Wrap .Slide01 {
     height: 100vh;
