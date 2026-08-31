@@ -1,18 +1,18 @@
 Read.me
 
-# 📂 Web Publisher Portfolio
+# 📂 Web Design Portfolio
 <!--
 <p align="center">
   <img src="https://capsule-render.vercel.app/render?type=soft&color=auto&height=150&section=header&text=Seo%20Yeonju&fontSize=60" />
 </p>-->
 
 <p align="center">
-  <b>기획의 의도를 코드로 증명하는 퍼블리셔 서연주입니다.</b><br>
+  <b>기획의 의도를 코드로 증명하는 웹디자이너 서연주입니다.</b><br>
   논리적인 기획과 유연한 마크업을 통해 최적의 사용자 경험을 구현합니다.
 </p>
 
 <p align="center">
-  <a href="https://yeonju-s5.github.io/Publisher-Portfolio/"><img src="https://img.shields.io/badge/LIVE_PORTFOLIO-879EBF?style=for-the-badge&logo=airplay&logoColor=white"></a>
+  <a href="https://yeonju-s5.github.io/WebDesignPortfolio/"><img src="https://img.shields.io/badge/LIVE_PORTFOLIO-879EBF?style=for-the-badge&logo=airplay&logoColor=white"></a>
   <a href="https://github.com/Yeonju-S5/Web-Planning-Hub"><img src="https://img.shields.io/badge/PLANNING_HUB-879EBF?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
